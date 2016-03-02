@@ -1,10 +1,24 @@
 var library = (function(){
 	return {
 		// Utility --- Complete Functions Below
-		identity : function(val) {},
+		identity : function(val) {
+            return val;
+        },
 
 		// Collections --- Complete Functions Below
-		each : function(list, iterator) {},
+		each : function(list, iterator) {
+            if (Array.isArray(list) == true) {
+                for (var i = 0; i < list.length; i++) {
+                        iterator(list[i], i, list);
+                }
+            }
+            if (Array.isArray(list) == false) {
+                for (var key in list) {
+                        iterator(list[key], key, list);
+                }
+            }
+            console.log(Array.isArray(list));
+        },
 
 		filter : function(list, test) {},
 
