@@ -74,9 +74,7 @@ var library = (function(){
         },
 
 		every : function(list, iterator) {
-            console.log(list, iterator);
             if (typeof iterator !== 'function') {
-                console.log("iterator is not a function");
                 var iterator = function iterator(a) {
                     return a;
                 };
@@ -86,9 +84,7 @@ var library = (function(){
                     return true;
                 }
                 for (var i = 0; i < list.length; i++) {
-                        console.log("function returns a value of " + iterator(list[i]))
                         if (iterator(list[i]) !== list[i]) {
-                            console.log("returning alternate value");
                             return iterator(list[i]);
                         }
                     if (iterator(list[i]) == false) {
