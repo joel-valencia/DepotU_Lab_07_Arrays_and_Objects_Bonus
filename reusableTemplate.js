@@ -96,7 +96,36 @@ var library = (function(){
             }
         },
 
-		some : function(list, iterator) {},
+		some : function(list, iterator) {
+            if (list.length == 0) {
+                return false;
+            }
+            if (typeof iterator !== 'function') {
+                iterator = this.identity;
+            }
+            
+            var result = []
+            for (var i = 0; i < list.length; i++) {
+                result.push(iterator(list[i]));
+            }
+            
+            var trues = 0;
+            var falses = 0;
+            for (var i = 0; i < result.length; i++) {
+                
+                if (result[i] === list[i] && result[i] != 0 && result[i] != null && result[i] != undefined) {
+                    trues++;
+                } else {
+                    falses++
+                }
+            }
+            
+            if (trues >= 1) {
+                return true;
+            }
+            
+            return false;
+        },
 
 		contains : function(list, target) {},
 
