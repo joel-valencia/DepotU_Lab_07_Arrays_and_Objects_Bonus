@@ -127,7 +127,14 @@ var library = (function(){
             return false;
         },
 
-		contains : function(list, target) {},
+		contains : function(list, target) {
+            for (var key in list) {
+                if (list[key] == target) {
+                    return true;
+                }
+            }
+            return false;
+        },
 
 		// Advanced Collections --- Complete Functions Below
 		shuffle : function(array) {},
