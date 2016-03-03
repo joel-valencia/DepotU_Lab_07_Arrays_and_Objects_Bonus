@@ -53,19 +53,24 @@ var library = (function(){
 			});
 		},
 		reduce : function(list, iterator, accumulator) {
-            if (typeof accumulator !== 'undefined') {
-                var result = accumulator;
-            } else {
-                var result = list[0];
-            }
+            // if (typeof accumulator !== 'undefined') {
+            //     var result = accumulator;
+            // } else {
+            //     var result = list[0];
+            // }
             var answer = 0;
-            for (var i = 0; i < (list.length - 1); i++) {
-                if (i == 0) {
-                    answer = list[0];
+            var firstVar = 0;
+            for (var i = -1; i < (list.length - 1); i++) {
+                if (i == -1) {
+                    if (typeof accumulator !== 'undefined') {
+                        firstVar = accumulator;
+                    } else {
+                        firstVar = list[0];
+                    }
                 }
-                answer = iterator(answer, list[i + 1]);
+                firstVar = iterator(firstVar, list[i + 1]);
             }
-            return answer + result;
+            return firstVar;
         },
 
 		every : function(list, iterator) {
