@@ -17,21 +17,57 @@ var library = (function(){
                         iterator(list[key], key, list);
                 }
             }
-            console.log(Array.isArray(list));
         },
 
-		filter : function(list, test) {},
+		filter : function(list, test) {
+            var result = []
+            for (var i = 0; i < list.length; i++) {
+                if (test(list[i])) {
+                    result.push(list[i]);
+                }
+            }
+            return result;
+        },
 
-		reject : function(list, test) {},
+		reject : function(list, test) {
+            var result = []
+            for (var i = 0; i < list.length; i++) {
+                if (test(list[i]) == false) {
+                    result.push(list[i]);
+                }
+            }
+            return result;
+        },
 
-		map : function(list, iterator) {},
+		map : function(list, iterator) {
+            var result = []
+            for (var i = 0; i < list.length; i++) {
+                    result.push(iterator(list[i]));
+            }
+            return result;
+        },
 
 		pluck : function(list, key) {
 			return this.map(list, function(item){
 				return item[key];
 			});
 		},
-		reduce : function(list, iterator, accumulator) {},
+		reduce : function(list, iterator, accumulator) {
+            if (typeof accumulator !== 'undefined') {
+                var result = accumulator;
+            } else {
+                var result = list[0];
+            }
+            var answer = 0;
+            for (var i = 0; i < (list.length - 1); i++) {
+                if (i == 0) {
+                    answer = list[0];
+                }
+                answer = iterator(answer, list[i + 1]);
+                console.log(i, answer);
+            }
+            return answer + result;
+        },
 
 		every : function(list, iterator) {},
 
