@@ -144,7 +144,14 @@ var library = (function(){
 		sortBy : function(list, iterator) {},
 
 		// Objects --- Complete Functions Below
-		extend : function(obj) {},
+		extend : function(obj) {
+            for (var i = 1; i < arguments.length; i++) {
+                 for (var key in arguments[i]) {
+                     obj[key] = arguments[i][key];
+                 }
+            }
+            return obj;
+        },
 
 		defaults : function(obj) {},
 
